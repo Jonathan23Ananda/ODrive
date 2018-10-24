@@ -10,7 +10,7 @@
   * inserted by the user or by software development tools
   * are owned by their respective copyright owners.
   *
-  * Copyright (c) 2019 STMicroelectronics International N.V. 
+  * Copyright (c) 2018 STMicroelectronics International N.V. 
   * All rights reserved.
   *
   * Redistribution and use in source and binary forms, with or without 
@@ -97,12 +97,8 @@
 #define USBD_PID_FS     0x0D32
 #define USBD_PRODUCT_XSTR(s) USBD_PRODUCT_STR(s)
 #define USBD_PRODUCT_STR(s) #s
-<<<<<<< HEAD
 #define USBD_PRODUCT_STRING_FS ODrive HW_VERSION_MAJOR.HW_VERSION_MINOR CDC Interface
 #define NATIVE_STRING ODrive HW_VERSION_MAJOR.HW_VERSION_MINOR Native Interface
-=======
-#define USBD_PRODUCT_STRING_FS ODrive version HW_VERSION_MAJOR.HW_VERSION_MINOR
->>>>>>> bake patch: display correct ODrive version in USB descriptor
 #define USBD_SERIALNUMBER_STRING_FS     "000000000001"
 #define USBD_CONFIGURATION_STRING_FS     "CDC Config"
 #define USBD_INTERFACE_STRING_FS     "CDC Interface"
