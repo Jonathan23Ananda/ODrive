@@ -94,6 +94,9 @@ extern ADC_HandleTypeDef hadc1;
 extern ADC_HandleTypeDef hadc2;
 extern ADC_HandleTypeDef hadc3;
 extern CAN_HandleTypeDef hcan1;
+extern DMA_HandleTypeDef hdma_spi3_tx;
+extern DMA_HandleTypeDef hdma_spi3_rx;
+extern SPI_HandleTypeDef hspi3;
 extern TIM_HandleTypeDef htim5;
 extern TIM_HandleTypeDef htim8;
 extern DMA_HandleTypeDef hdma_uart4_rx;
@@ -202,8 +205,27 @@ void DebugMon_Handler(void)
 /******************************************************************************/
 
 /**
+<<<<<<< HEAD
   * @brief This function handles DMA1 stream2 global interrupt.
   */
+=======
+* @brief This function handles DMA1 stream0 global interrupt.
+*/
+void DMA1_Stream0_IRQHandler(void)
+{
+  /* USER CODE BEGIN DMA1_Stream0_IRQn 0 */
+
+  /* USER CODE END DMA1_Stream0_IRQn 0 */
+  HAL_DMA_IRQHandler(&hdma_spi3_rx);
+  /* USER CODE BEGIN DMA1_Stream0_IRQn 1 */
+
+  /* USER CODE END DMA1_Stream0_IRQn 1 */
+}
+
+/**
+* @brief This function handles DMA1 stream2 global interrupt.
+*/
+>>>>>>> cube: add SPI irqs and DMA
 void DMA1_Stream2_IRQHandler(void)
 {
   /* USER CODE BEGIN DMA1_Stream2_IRQn 0 */
@@ -230,8 +252,27 @@ void DMA1_Stream4_IRQHandler(void)
 }
 
 /**
+<<<<<<< HEAD
   * @brief This function handles ADC1, ADC2 and ADC3 global interrupts.
   */
+=======
+* @brief This function handles DMA1 stream5 global interrupt.
+*/
+void DMA1_Stream5_IRQHandler(void)
+{
+  /* USER CODE BEGIN DMA1_Stream5_IRQn 0 */
+
+  /* USER CODE END DMA1_Stream5_IRQn 0 */
+  HAL_DMA_IRQHandler(&hdma_spi3_tx);
+  /* USER CODE BEGIN DMA1_Stream5_IRQn 1 */
+
+  /* USER CODE END DMA1_Stream5_IRQn 1 */
+}
+
+/**
+* @brief This function handles ADC1, ADC2 and ADC3 global interrupts.
+*/
+>>>>>>> cube: add SPI irqs and DMA
 void ADC_IRQHandler(void)
 {
   /* USER CODE BEGIN ADC_IRQn 0 */
@@ -344,8 +385,27 @@ void TIM5_IRQHandler(void)
 }
 
 /**
+<<<<<<< HEAD
   * @brief This function handles UART4 global interrupt.
   */
+=======
+* @brief This function handles SPI3 global interrupt.
+*/
+void SPI3_IRQHandler(void)
+{
+  /* USER CODE BEGIN SPI3_IRQn 0 */
+
+  /* USER CODE END SPI3_IRQn 0 */
+  HAL_SPI_IRQHandler(&hspi3);
+  /* USER CODE BEGIN SPI3_IRQn 1 */
+
+  /* USER CODE END SPI3_IRQn 1 */
+}
+
+/**
+* @brief This function handles UART4 global interrupt.
+*/
+>>>>>>> cube: add SPI irqs and DMA
 void UART4_IRQHandler(void)
 {
   /* USER CODE BEGIN UART4_IRQn 0 */
