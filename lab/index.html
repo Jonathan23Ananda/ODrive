@@ -1,0 +1,88 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Haptic Arm Demo</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <style>
+
+    body {
+      background-color: rgb(216, 211, 203);
+      overflow: hidden;
+    }
+    #workspace {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+
+    }
+  </style>
+
+</head> 
+
+<body>
+
+  <canvas id="workspace" width="1920px" height="1200px">
+  </canvas>
+
+  <script>
+      var c = document.getElementById("workspace");
+      function draw_circle(x, y){
+        var ctx = c.getContext("2d");
+        ctx.clearRect(0, 0, c.width, c.height);
+
+        ctx.beginPath();
+        ctx.arc(x, y, 50, -Math.PI/4, -3*Math.PI/4);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(x, y, 10, 0, 2*Math.PI);
+        ctx.fill();
+      }
+      var x = 100;
+      var y = 100;
+      draw_circle(x, y);
+      
+</script>
+
+
+<script>
+  function connect() {
+    var ws = new WebSocket('ws://127.0.0.1:5678');
+    ws.onopen = function() {
+      // subscribe to some channels
+      ws.send(JSON.stringify({
+          //.... some message the I must send when I connect ....
+      }));
+    };
+
+    ws.onmessage = function (event) {
+      xy = event.data.split(',')
+      console.log(xy)
+      x = parseFloat(xy[0])
+      y = parseFloat(xy[1])
+      draw_circle(x, y)
+    };
+
+
+    ws.onclose = function(e) {
+      console.log('Socket is closed. Reconnect will be attempted in 1 second.', e.reason);
+      setTimeout(function() {
+        connect();
+      }, 250);
+    };
+
+    ws.onerror = function(err) {
+      console.error('Socket encountered error: ', err.message, 'Closing socket');
+      ws.close();
+    };
+  }
+  connect();
+  </script>
+
+</body>
+
+
+</html>
